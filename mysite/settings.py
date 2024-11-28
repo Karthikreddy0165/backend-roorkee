@@ -13,7 +13,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 import os
 from dotenv import load_dotenv
 
-load_dotenv()
+load_dotenv(override=True)
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -28,7 +28,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = ["3.109.208.148",'*']
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
@@ -201,45 +201,45 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(ROOT_DIR, '/media_files')
 
 # Celery configuration
-REDIS_HOST = os.getenv('REDIS_HOST')
-REDIS_PORT = os.getenv('REDIS_PORT')
-CELERY_BROKER_URL = f'redis://{REDIS_HOST}:{REDIS_PORT}/0' # CELERY_RESULT_BACKEND = CELE>
-CELERY_TASK_SERIALIZER = 'json'
-CELERY_RESULT_SERIALIZER = 'json'
-CELERY_ACCEPT_CONTENT = ['json']
-CELERY_TIMEZONE = 'UTC'
-CELERY_ENABLE_UTC = True
+# REDIS_HOST = os.getenv('REDIS_HOST')
+# REDIS_PORT = os.getenv('REDIS_PORT')
+# CELERY_BROKER_URL = f'redis://{REDIS_HOST}:{REDIS_PORT}/0' # CELERY_RESULT_BACKEND = CELE>
+# CELERY_TASK_SERIALIZER = 'json'
+# CELERY_RESULT_SERIALIZER = 'json'
+# CELERY_ACCEPT_CONTENT = ['json']
+# CELERY_TIMEZONE = 'UTC'
+# CELERY_ENABLE_UTC = True
 
- # settings.py
-CELERY_BROKER_URL = f'redis://{REDIS_HOST}:{REDIS_PORT}/0'
-CELERY_RESULT_BACKEND = CELERY_BROKER_URL
+#  # settings.py
+# CELERY_BROKER_URL = f'redis://{REDIS_HOST}:{REDIS_PORT}/0'
+# CELERY_RESULT_BACKEND = CELERY_BROKER_URL
 
-# Cacheops settings
-CACHES = {
-     'default': {
-         'BACKEND': 'django_redis.cache.RedisCache',
-         'LOCATION':  f'redis://{REDIS_HOST}:{REDIS_PORT}/1',  # Make sure this is correct
-         'OPTIONS': {
-             'CLIENT_CLASS': 'django_redis.client.DefaultClient',
-        }
-    }
-}
-CACHEOPS_REDIS = {
-     'host': REDIS_HOST,  # Redis host
-     'port': REDIS_PORT,         # Redis port
-     'db': 1,              # Redis db
-     'password': None,     # Redis password if any
-     'socket_timeout': 3,
-}
+# # Cacheops settings
+# CACHES = {
+#      'default': {
+#          'BACKEND': 'django_redis.cache.RedisCache',
+#          'LOCATION':  f'redis://{REDIS_HOST}:{REDIS_PORT}/1',  # Make sure this is correct
+#          'OPTIONS': {
+#              'CLIENT_CLASS': 'django_redis.client.DefaultClient',
+#         }
+#     }
+# }
+# CACHEOPS_REDIS = {
+#      'host': REDIS_HOST,  # Redis host
+#      'port': REDIS_PORT,         # Redis port
+#      'db': 1,              # Redis db
+#      'password': None,     # Redis password if any
+#      'socket_timeout': 3,
+# }
 
-CACHEOPS_DEFAULTS = {
-     'timeout': 60*15  # 15 minutes
-}
+# CACHEOPS_DEFAULTS = {
+#      'timeout': 60*15  # 15 minutes
+# }
 
-CACHEOPS = {
-     'myapp.*': {'ops': 'all', 'timeout': 60*60},
+# CACHEOPS = {
+#      'myapp.*': {'ops': 'all', 'timeout': 60*60},
 
-}
+# }
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
@@ -248,7 +248,9 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
 EMAIL_FROM = os.getenv('EMAIL_FROM')
-SITE_URL = "http://13.201.99.1:8000/api"
-FRONTEND_URL = "http://13.201.99.1:3000"
+
+SITE_URL = "http://3.109.208.148:8000/api"
+FRONTEND_URL = "http://3.109.208.148:3000"
+
 
 AUTH_USER_MODEL = 'myapp.CustomUser'
